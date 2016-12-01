@@ -8,8 +8,18 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(Hmisc)
-mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
+
+```{r}
+
+dataFR <- mydata[which(mydata$CNTRY=="France") , ]
+
+persodata <- dataFR[ , c(599, 211, 212, 443)]
+#211-> ALCWDY et 212 -> ALCWND et 599 -> DWEIGHT et 443-> HINCTNTA
+
+```
+
 
 ## Introduction
 

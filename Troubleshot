@@ -1,0 +1,5 @@
+It's needed to install Hmisc before. 
+
+library(Hmisc)
+mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+
