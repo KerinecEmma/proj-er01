@@ -11,12 +11,24 @@ library(Hmisc)
 library(ggplot2)
 #change the path!
 #mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
-mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
-#mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+#mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
 
-## Title of the subpart
+## Information about data
 
+The data come from the European Social Survey year 2014. 
+We looked at the consumption of alcohol and income in France. There was 1917 respondent. 
+
+The information that we used are:
+Frequency of alcohol drinking.
+Frequency of binge drinking.
+Quantity of alcohol drink the kast time on a weekday (monday to thursday).
+Quantity of alcohol drink the last time on a week-end (friday to sunday).
+Their annual income (net income).
+
+
+Data are weighted to  give a better representation of the entire population.
 ```{r}
 
 dataFR <- mydata[which(mydata$CNTRY=="France") , ]
@@ -26,6 +38,8 @@ persodata <- dataFR[ , c(599, 211, 212, 443 , 210, 214, 213)]
 
 persodata <- persodata [which(persodata$ALCWKDY<6666),]
 persodata <- persodata [which(persodata$ALCWKND<6666),]
+
+#we took back people who never drunk alcohol or who didn't know information.
 
 plt <- ggplot(data=persodata, aes(x=ALCFREQ, fill=HINCTNTA))
 plt <- plt + geom_histogram(aes(weight = DWEIGHT), stat="count") + ggtitle("Title")
