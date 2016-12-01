@@ -1,0 +1,20 @@
+---
+title: "ER01-Project : Alcohol and Incomes"
+author: "Emma Kerinec, Yannis Gaziello, Nicolas Derumigny"
+date: "1 décembre 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Hmisc)
+mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+```
+
+## Introduction
+
+```{r}
+```
+
+## Analysis of data
+
