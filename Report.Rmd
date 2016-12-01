@@ -15,8 +15,8 @@ mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels
 
 dataFR <- mydata[which(mydata$CNTRY=="France") , ]
 
-persodata <- dataFR[ , c(599, 211, 212, 443)]
-#211-> ALCWDY et 212 -> ALCWND et 599 -> DWEIGHT et 443-> HINCTNTA
+persodata <- dataFR[ , c(599, 211, 212, 443 , 210, 214)]
+#211-> ALCWDY et 212 -> ALCWND et 599 -> DWEIGHT et 443-> HINCTNTA 210-> ALCFREQ et 214 -> ALCBNGE
 
 ```
 
