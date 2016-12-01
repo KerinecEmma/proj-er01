@@ -8,7 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(Hmisc)
-mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+
+#change the path!
+mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+#mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+#mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
 
 ```{r}
@@ -23,7 +27,11 @@ persodata <- dataFR[ , c(599, 211, 212, 443 , 210, 214)]
 
 ## Introduction
 
+
 ```{r}
+dataFR <- mydata[which(mydata$CNTRY=="France") , (mydata$NAME, mydata$CNTRY)] 
+
+
 ```
 
 ## Analysis of data
