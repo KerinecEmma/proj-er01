@@ -2,7 +2,7 @@
 title: "ER01-Project : Alcohol and Incomes"
 author: "Emma Kerinec, Yannis Gaziello, Nicolas Derumigny"
 date: "1 décembre 2016"
-output: html_document
+output:  html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -11,11 +11,11 @@ library(Hmisc)
 library(ggplot2)
 #change the path!
 #mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
-#mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
-mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+#mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
 
-## Information about data
+## Introduction
 
 The data come from the European Social Survey year 2014. 
 We looked at the consumption of alcohol and income in France. There was 1917 respondent. 
@@ -28,6 +28,7 @@ Quantity of alcohol drink the last time on a week-end (friday to sunday).
 Their annual income (net income).
 
 
+## Methodoloy
 Data are weighted to  give a better representation of the entire population.
 ```{r}
 
@@ -42,7 +43,7 @@ persodata <- persodata [which(persodata$ALCWKND<6666),]
 #we took back people who never drunk alcohol or who didn't know information.
 
 plt <- ggplot(data=persodata, aes(x=ALCFREQ, fill=HINCTNTA))
-plt <- plt + geom_histogram(aes(weight = DWEIGHT), stat="count") + ggtitle("Title")
+plt <- plt + geom_histogram(aes(weight = DWEIGHT), stat="count") + ggtitle("Frequency of alcohol consumption by incomes")
 plt
 ```
 
@@ -50,6 +51,14 @@ plt
 library(plyr)
 means <- ddply(persodata, "HINCTNTA" , summarise, ALCWKDY.mean=weighted.mean(ALCWKDY,DWEIGHT), ALCWKND.mean=weighted.mean(ALCWKND, DWEIGHT))
 
-plt <- qplot(data=means, aes(x=HINCTNTA, y=ALCWKDY.mean, fill=ALCWKND.mean)) + geom_bar() + ggtitle("Title2")
+plt <- ggplot(data=means, aes(x=HINCTNTA, y=ALCWKDY.mean, fill=ALCWKND.mean)) + geom_bar(stat="identity") + ggtitle("Means of the week day consumption of alcohol")
 plt
+```
+
+
+
+```{r}
+plt <- ggplot(data=persodata, aes(x=ALCFREQ, fill=ALCBNGE)) + geom_bar() + ggtitle("Frequency of binge drinking, function of the frequency of alcoho consumption")
+plt
+
 ```
