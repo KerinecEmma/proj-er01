@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(Hmisc)
-mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
 
 ## Introduction
