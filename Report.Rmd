@@ -8,31 +8,28 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(Hmisc)
-
+library(ggplot2)
 #change the path!
-mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
-#mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+#mydata <- spss.get("/home/ekerinec/Bureau/CoursM1/er01/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
+mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 #mydata <- spss.get("/home/guest/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
+
+## Title of the subpart
 
 ```{r}
 
 dataFR <- mydata[which(mydata$CNTRY=="France") , ]
 
-persodata <- dataFR[ , c(599, 211, 212, 443 , 210, 214)]
-#211-> ALCWDY et 212 -> ALCWND et 599 -> DWEIGHT et 443-> HINCTNTA 210-> ALCFREQ et 214 -> ALCBNGE
+persodata <- dataFR[ , c(599, 211, 212, 443 , 210, 214, 213)]
+#211-> ALCWKDY et 212 -> ALCWKND et 599 -> DWEIGHT et 443-> HINCTNTA 210-> ALCFREQ et 214 -> ALCBNGE 213 -> ICGNDRA
+
+persodata <- persodata [which(persodata$ALCWKDY<6666),]
+persodata <- persodata [which(persodata$ALCWKND<6666),]
+
+plt <- ggplot(data=persodata, aes(x=ALCFREQ, fill=HINCTNTA))
+plt <- plt + geom_histogram(aes(weight = DWEIGHT), stat="count") + ggtitle("Title")
+plt
 
 ```
-
-
-## Introduction
-
-
-```{r}
-dataFR <- mydata[which(mydata$CNTRY=="France") , (mydata$NAME, mydata$CNTRY)] 
-
-
-```
-
-## Analysis of data
 
