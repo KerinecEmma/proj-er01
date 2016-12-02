@@ -44,6 +44,12 @@ persodata <- persodata [which(persodata$ALCWKND<6666),]
 plt <- ggplot(data=persodata, aes(x=ALCFREQ, fill=HINCTNTA))
 plt <- plt + geom_histogram(aes(weight = DWEIGHT), stat="count") + ggtitle("Title")
 plt
-
 ```
 
+```{r}
+library(plyr)
+means <- ddply(persodata, "HINCTNTA" , summarise, ALCWKDY.mean=weighted.mean(ALCWKDY,DWEIGHT), ALCWKND.mean=weighted.mean(ALCWKND, DWEIGHT))
+
+plt <- qplot(data=means, aes(x=HINCTNTA, y=ALCWKDY.mean, fill=ALCWKND.mean)) + geom_bar() + ggtitle("Title2")
+plt
+```
