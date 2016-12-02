@@ -8,12 +8,17 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(Hmisc)
+#change the path!
 mydata <- spss.get("C:/Users/cube/Documents/GitHub/proj-er01/data/ESS7e02sas.por", use.value.labels=TRUE)
 ```
 
 ## Introduction
 
+
 ```{r}
+dataFR <- mydata[which(mydata$CNTRY=="France") , (mydata$NAME, mydata$CNTRY)] 
+
+
 ```
 
 ## Analysis of data
